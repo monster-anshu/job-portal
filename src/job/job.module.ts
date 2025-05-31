@@ -6,5 +6,6 @@ import { JobModelProvider } from '~/mongo/job.schema';
 @Module({
   controllers: [JobController],
   providers: [JobService, JobModelProvider],
+  exports: [JobService],
 })
 export class JobModule {}

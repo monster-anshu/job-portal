@@ -1,4 +1,4 @@
-import { InferSchemaType, Schema, Types } from 'mongoose';
+import { InferSchemaType, Schema } from 'mongoose';
 import { MONGO_CONNECTION } from './connections';
 import { Provider } from '@nestjs/common';
 
@@ -19,7 +19,7 @@ const JobSchema = new Schema(
     skills: [String],
     userId: {
       required: true,
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
     },
   },
   { timestamps: true },
