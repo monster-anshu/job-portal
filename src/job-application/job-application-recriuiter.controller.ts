@@ -11,7 +11,7 @@ export class JobApplicationRecriuiterController {
   constructor(private readonly jobApplicationService: JobApplicationService) {}
 
   @ApiOperation({
-    summary: 'Get a job application by ID for recriuiter',
+    summary: 'Get a job application for recriuiter',
     description: 'Allows a recriuiter to retrieve a job applications.',
   })
   @CheckAbility('RECRIUITER')
