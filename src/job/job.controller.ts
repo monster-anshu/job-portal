@@ -5,13 +5,18 @@ import { CreateJobDto } from './dto/create-job.dto';
 import { CheckAbility } from '~/user/ability.decorator';
 import { JobService } from './job.service';
 import { User } from '~/mongo/user.schema';
-import { access } from 'fs';
+import { ApiOperation } from '@nestjs/swagger';
 
 @UseGuards(UserGuard)
 @Controller('job')
 export class JobController {
   constructor(private readonly jobService: JobService) {}
 
+  @ApiOperation({
+    description:
+      'List all jobs. If user has RECRIUITER access, it will list only their jobs.',
+    summary: 'List jobs',
+  })
   @Get()
   async list(
     @GetSession('userId') userId: string,
@@ -27,6 +32,10 @@ export class JobController {
     };
   }
 
+  @ApiOperation({
+    description: 'Get job by ID.',
+    summary: 'Get job by ID',
+  })
   @Get(':jobId')
   async getById(@Param('jobId') jobId: string) {
     const job = await this.jobService.getById(jobId);
@@ -37,6 +46,11 @@ export class JobController {
     };
   }
 
+  @ApiOperation({
+    description:
+      'Create a new job. Only accessible by users with RECRIUITER access.',
+    summary: 'Create job',
+  })
   @CheckAbility('RECRIUITER')
   @Post()
   async create(
