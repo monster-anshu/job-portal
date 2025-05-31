@@ -26,7 +26,7 @@ const UserSchema = new Schema(
 );
 
 export const UserModelProvider = {
-  provide: 'user',
+  provide: 'user-model',
   useValue: MONGO_CONNECTION.DEFAULT.model('user', UserSchema),
 } satisfies Provider;
 

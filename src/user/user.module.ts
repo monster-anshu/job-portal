@@ -7,5 +7,6 @@ import { UserModelProvider } from '~/mongo/user.schema';
 @Module({
   controllers: [UserController],
   providers: [UserService, UserModelProvider],
+  exports: [UserService],
 })
 export class UserModule {}
