@@ -35,7 +35,15 @@ export class JobApplicationService {
       status: 'PENDING',
     });
 
+    this.sendMail(jobId, job.userId.toString());
+
     return application.toObject();
+  }
+
+  async sendMail(jobId: string, recriuiterId: string) {
+    // This method is a placeholder for sending an email notification.
+    // You can implement the email sending logic here using your preferred email service.
+    console.log(`Sending email to recriuiter ${recriuiterId} for job ${jobId}`);
   }
 
   async list(options: ListOptions) {
