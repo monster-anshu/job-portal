@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { GetSession } from '~/session/session.decorator';
 import { UserGuard } from '~/user/user.guard';
 import { CreateJobDto } from './dto/create-job.dto';
@@ -24,6 +24,16 @@ export class JobController {
     return {
       isSuccess: true,
       jobs,
+    };
+  }
+
+  @Get(':jobId')
+  async getById(@Param('jobId') jobId: string) {
+    const job = await this.jobService.getById(jobId);
+
+    return {
+      isSuccess: true,
+      job,
     };
   }
 
